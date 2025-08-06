@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 프로필</title>
+    <style>
+        /* 간단한 스타일링 */
+        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background-color: white; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 30px; max-width: 400px; text-align: center; }
+        h1 { color: #1877f2; }
+        p { line-height: 1.6; }
+        .guestbook { margin-top: 20px; text-align: left; }
+        input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #1877f2; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 이 부분을 수정하세요 -->
+        <h1>윤명희</h1>
+        <p>바이브코딩을 좋아하는 이모예요. <br>함께 재미있는 프로젝트를 만들어요!</p>
+        <a href="https://github.com/yoon-gdeal">My GitHub</a>
+        
+        <hr>
+        
+        <!-- 방명록 폼 (2단계에서 사용) -->
+        <div class="guestbook">
+            <h2>방명록</h2>
+            <form id="guestbook-form">
+                <input type="text" name="name" placeholder="이름" required>
+                <textarea name="message" placeholder="메시지를 남겨주세요..." required></textarea>
+                <button type="submit">남기기</button>
+            </form>
+            <p id="form-response" style="margin-top:10px;"></p>
+        </div>
+    </div>
+
+    <script>
+        // 방명록 스크립트 (2단계에서 사용)
+        const form = document.getElementById('guestbook-form');
+        const formResponse = document.getElementById('form-response');
+        
+        // 여기에 Apps Script URL을 붙여넣으세요
+        const APPS_SCRIPT_URL = '여기에_배포된_APPS_SCRIPT_URL을_넣어주세요';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            formResponse.textContent = '전송 중...';
+            const data = new FormData(form);
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: data
+            })
+            .then(res => res.text())
+            .then(data => {
+                formResponse.textContent = '메시지가 성공적으로 전송되었습니다!';
+                form.reset();
+                setTimeout(() => { formResponse.textContent = ''; }, 3000);
+            }).catch(error => {
+                formResponse.textContent = '오류가 발생했습니다. 다시 시도해주세요.';
+            });
+        });
+    </script>
+</body>
+</html>
+
