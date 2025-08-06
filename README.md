@@ -1,4 +1,5 @@
-## Hi there 👋
+저는 바이브코딩을 좋아하는 윤명희예요 👋 <br>
+제가 만든 코드들을 나누어 드립니다 ✨
 
 <!--
 **yoon-gdeal/yoon-gdeal** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
